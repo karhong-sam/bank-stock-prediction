@@ -34,6 +34,9 @@ def fetch_and_process_data(stock_ticker, start_date, end_date):
     data = yf.download(stock_ticker, start=start_date, end=end_date)
 
     if not data.empty:
+        # Normalize column names to ensure consistency
+        data.columns = [col.split(" ")[-1] if " " in col else col for col in data.columns]
+
         st.write("### Data Preview")
         st.dataframe(data.head())
         st.write(f"Data fetched with {len(data)} rows and {len(data.columns)} columns.")
