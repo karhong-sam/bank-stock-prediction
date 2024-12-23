@@ -34,8 +34,10 @@ def fetch_and_process_data(stock_ticker, start_date, end_date):
     data = yf.download(stock_ticker, start=start_date, end=end_date)
 
     if not data.empty:
-        # Normalize column names to ensure consistency
-        data.columns = [col.split(" ")[-1] if " " in col else col for col in data.columns]
+        # Check if columns are in multi-index format
+        if isinstance(data.columns, pd.MultiIndex):
+            # Flatten multi-index columns and keep only the feature names
+            data.columns = data.columns.get_level_values(0)
 
         st.write("### Data Preview")
         st.dataframe(data.head())
