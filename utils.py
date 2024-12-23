@@ -54,10 +54,15 @@ def fetch_and_process_data(stock_ticker, start_date, end_date):
         st.error("No data found for the selected ticker and dates.")
 
 def plot_moving_averages(data, filtered_data):
+    if filtered_data.empty:
+        return None  # Return None if there's no data to plot
+
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=filtered_data.index, y=filtered_data['Close'], mode='lines', name='Close Price'))
-    fig.add_trace(go.Scatter(x=filtered_data.index, y=filtered_data['MA20'], mode='lines', name='MA20'))
-    fig.add_trace(go.Scatter(x=filtered_data.index, y=filtered_data['MA60'], mode='lines', name='MA60'))
+    if 'MA20' in filtered_data.columns:
+        fig.add_trace(go.Scatter(x=filtered_data.index, y=filtered_data['MA20'], mode='lines', name='MA20'))
+    if 'MA60' in filtered_data.columns:
+        fig.add_trace(go.Scatter(x=filtered_data.index, y=filtered_data['MA60'], mode='lines', name='MA60'))
     fig.update_layout(
         title="Close Price with MA20 and MA60",
         xaxis_title="Date",
@@ -84,22 +89,45 @@ def view_eda():
     if 'data' in st.session_state:
         data = st.session_state['data']
 
-        st.write("### Engineered Features")
-        st.dataframe(data[['EMA_12', 'EMA_26', 'MACD', 'Signal_Line', 'MACD_Histogram', 'MA20', 'MA60']].head())
+        # Check if required columns exist
+        required_columns = ['EMA_12', 'EMA_26', 'MACD', 'Signal_Line', 'MACD_Histogram', 'MA20', 'MA60']
+        if not all(col in data.columns for col in required_columns):
+            st.error("Required engineered features are missing. Please ensure they are calculated.")
+            return
 
+        st.write("### Engineered Features")
+        st.dataframe(data[required_columns].head())
+
+        # Filter data by date
         st.subheader("Filter Data by Date")
         min_date = data.index.min()
         max_date = data.index.max()
+        if not isinstance(min_date, pd.Timestamp) or not isinstance(max_date, pd.Timestamp):
+            st.error("The data index is not in datetime format. Please ensure it is converted to datetime.")
+            return
+
         date_range = st.date_input("Select Date Range", [min_date.to_pydatetime(), max_date.to_pydatetime()])
         filtered_data = data.loc[pd.to_datetime(date_range[0]):pd.to_datetime(date_range[1])]
 
+        if filtered_data.empty:
+            st.warning("No data available for the selected date range.")
+            return
+
+        # Plot moving averages
         st.subheader("Plot Moving Averages")
         ma_fig = plot_moving_averages(data, filtered_data)
-        st.plotly_chart(ma_fig)
+        if ma_fig:
+            st.plotly_chart(ma_fig)
+        else:
+            st.warning("Moving averages could not be plotted due to missing data.")
 
+        # Plot MACD Histogram
         st.subheader("Plot MACD Histogram")
         macd_fig = plot_macd_histogram(filtered_data)
-        st.plotly_chart(macd_fig)
+        if macd_fig:
+            st.plotly_chart(macd_fig)
+        else:
+            st.warning("MACD Histogram could not be plotted due to missing data.")
     else:
         st.error("Please fetch data first.")
 
