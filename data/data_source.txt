@@ -1,0 +1,11 @@
+https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG?name_desc=true
+
+https://data.worldbank.org/indicator/NY.GDP.MKTP.KD?name_desc=true
+
+https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG?name_desc=true
+
+https://open.dosm.gov.my/dashboard/gdp
+
+https://open.dosm.gov.my/data-catalogue/gdp_gni_annual_real?visual=gdp
+
+https://www.bnm.gov.my/interest-rates-volumes
