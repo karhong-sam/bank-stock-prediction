@@ -15,7 +15,7 @@ tabs = st.tabs(["Fetch Data", "View EDA", "Train Model & Evaluate", "Test Model 
 # Tab 1: Fetch Data
 with tabs[0]:
     st.header("Step 1: Fetch Data")
-    stock_ticker = st.text_input("Enter Stock Ticker (e.g., AAPL, TSLA)", "AAPL")
+    stock_ticker = st.text_input("Enter Stock Ticker (e.g., 1023.KL (CIMB), 1295.KL (PBB), 1155.KL (MBB))", "1155.KL")
     start_date = st.date_input("Select Start Date")
     end_date = st.date_input("Select End Date")
 
