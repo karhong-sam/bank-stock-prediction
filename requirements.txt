@@ -1,0 +1,17 @@
+yfinance
+numpy
+pandas
+matplotlib
+seaborn
+missingno
+requests
+selenium
+wbdata
+torch
+torchinfo
+scikit-learn
+joblib
+statsmodels
+plotly
+streamlit
+Pillow
