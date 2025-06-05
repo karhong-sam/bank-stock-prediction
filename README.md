@@ -30,8 +30,14 @@ pip install -r requirements.txt
 ```
 
 ### 3. Run the Streamlit App
+
+#### Via Local
 ```bash
 streamlit run app.py
+```
+#### Via Streamlit Cloud
+```bash
+https://bank-stock-prediction.streamlit.app/
 ```
 
 ## Usage
