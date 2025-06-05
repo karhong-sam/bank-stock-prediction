@@ -102,7 +102,7 @@ Pillow
 - **Performance**: LSTM-RNN models work best with **longer timeframes** and **relevant features**.
 
 ## License
-This project is licensed under the **MIT License**.
+This project is licensed under the **Apache License 2.0**.
 
 ## Acknowledgments
 - **Yahoo Finance** for stock data
