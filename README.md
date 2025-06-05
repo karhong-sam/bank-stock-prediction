@@ -37,31 +37,31 @@ streamlit run app.py
 ## Usage
 The app consists of **six main tabs**:
 
-### 1️⃣ Disclaimer
+### 1 Disclaimer
 - Provides important notices and legal disclaimers about stock predictions and investment risks.
 
-### 2️⃣ Fetch Data
+### 2 Fetch Data
 - Enter **Stock Ticker** (e.g., `1155.KL` for Maybank)
 - Select **Start Date** and **End Date**
 - Click `Fetch Data` to download stock data
 
-### 3️⃣ View EDA (Exploratory Data Analysis)
+### 3 View EDA (Exploratory Data Analysis)
 - View stock data summary
 - Plot **Moving Averages (MA20, MA60)**
 - Visualize **MACD Histogram & Signal Line**
 
-### 4️⃣ Train Model & Evaluate
+### 4 Train Model & Evaluate
 - Preprocesses stock data for training
 - Train an **LSTM-RNN** model
 - Evaluate **Train & Validation Loss**
 - Download trained model
 
-### 5️⃣ Test Model Performance
+### 5 Test Model Performance
 - Evaluate the trained model on unseen test data
 - Show **Actual vs Predicted Prices**
 - Display **Error Metrics (MAE, RMSE, R2 Score)**
 
-### 6️⃣ Predict Future Prices
+### 6 Predict Future Prices
 - Upload a trained model (`.pkl` file) or use the latest trained model
 - Select **Days to Predict**
 - Plot **Future Price Predictions**
@@ -108,6 +108,3 @@ This project is licensed under the **Apache License 2.0**.
 - **Yahoo Finance** for stock data
 - **PyTorch Community** for deep learning support
 - **Streamlit** for making data visualization easy
-
----
-### 🚀 Happy Investing & Predicting! 📈
